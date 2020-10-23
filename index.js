@@ -15,10 +15,10 @@ MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
     db.dropCollection('campsites')
         .then(result => {
         console.log('Dropped Collection:', result);
-
-        return dboper.insertDocument(db, { name: "Breadcrumb Trail Campground", description: "Test"},
-            'campsites');
         })
+        .catch(err => console.log('No collection to drop'));
+
+        dboper.insertDocument(db, { name: "Breadcrumb Trail Campground", description: "Test"}, 'campsites')
         .then(result => {  
             console.log('Insert Document:', result.ops);
 
